@@ -1,0 +1,3 @@
+ci_access:
+  projects:
+    -id: zagbor/demo1
