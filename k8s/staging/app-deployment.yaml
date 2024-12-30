@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo1-staging
+  labels:
+    app: demo1
+    environment: staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo1
+      environment: staging
+  template:
+    metadata:
+      labels:
+        app: demo1
+        environment: staging
+    spec:
+      containers:
+        - name: demo1
+          image: zagbor/demo1/:staging
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: app-staging-config
